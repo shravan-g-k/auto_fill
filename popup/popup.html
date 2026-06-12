@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=420, initial-scale=1.0">
+  <title>AutoFill Pro</title>
+  <link rel="stylesheet" href="popup.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="header-left">
+        <img src="../icons/icon48.png" alt="AutoFill Pro" class="header-icon">
+        <div>
+          <h1 class="header-title">AutoFill Pro</h1>
+          <p class="header-subtitle">Your forms, filled instantly</p>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="profile-selector">
+          <select id="profileSelect" title="Switch profile"><option value="default">Default Profile</option></select>
+          <button id="addProfileBtn" class="icon-btn" title="New profile">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+          <button id="deleteProfileBtn" class="icon-btn icon-btn--danger" title="Delete profile">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+          <button id="openInTabBtn" class="icon-btn" title="Open in full tab">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 2H3a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M10 2h4v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 9L14 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="status-bar" id="statusBar">
+      <span class="status-dot"></span>
+      <span id="statusText">No data saved yet</span>
+    </div>
+
+    <div class="form-container" id="formContainer">
+
+      <!-- Personal -->
+      <section class="form-section" data-section="personal">
+        <button class="section-header" type="button" aria-expanded="true">
+          <div class="section-header-left">
+            <svg class="section-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="7" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M3 17c0-3.314 3.134-6 7-6s7 2.686 7 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span>Personal Information</span>
+          </div>
+          <svg class="chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="section-content">
+          <div class="field-row">
+            <div class="field-group"><label for="firstName">First Name</label><div class="input-wrap"><input type="text" id="firstName" placeholder="John" autocomplete="off"><button class="toggle-btn active" data-field="firstName" title="Toggle auto-fill"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
+            <div class="field-group"><label for="lastName">Last Name</label><div class="input-wrap"><input type="text" id="lastName" placeholder="Doe" autocomplete="off"><button class="toggle-btn active" data-field="lastName" title="Toggle auto-fill"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
+          </div>
+          <div class="field-row">
+            <div class="field-group"><label for="email">Email</label><div class="input-wrap"><input type="email" id="email" placeholder="john@example.com" autocomplete="off"><button class="toggle-btn active" data-field="email" title="Toggle auto-fill"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
+            <div class="field-group"><label for="phone">Phone</label><div class="input-wrap"><input type="tel" id="phone" placeholder="+1 555-0123" autocomplete="off"><button class="toggle-btn active" data-field="phone" title="Toggle auto-fill"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
+          </div>
+          <div class="field-row">
+            <div class="field-group full-width"><label for="dob">Date of Birth</label><div class="input-wrap"><input type="date" id="dob" autocomplete="off"><button class="toggle-btn active" data-field="dob" title="Toggle auto-fill"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Address -->
+      <section class="form-section" data-section="address">
+        <button class="section-header" type="button" aria-expanded="true">
+          <div class="section-header-left">
+            <svg class="section-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2C6.686 2 4 4.686 4 8c0 4.5 6 10 6 10s6-5.5 6-10c0-3.314-2.686-6-6-6z" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="8" r="2" stroke="currentColor" stroke-width="1.5"/></svg>
+            <span>Address</span>
+          </div>
+          <svg class="chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="section-content">
+          <div class="field-row"><div class="field-group full-width"><label for="street">Street Address</label><div class="input-wrap"><input type="text" id="street" placeholder="123 Main Street" autocomplete="off"><button class="toggle-btn active" data-field="street" title="Toggle"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div></div>
+          <div class="field-row">
+            <div class="field-group"><label for="city">City</label><div class="input-wrap"><input type="text" id="city" placeholder="San Francisco" autocomplete="off"><button class="toggle-btn active" data-field="city" title="Toggle"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
+            <div class="field-group"><label for="state">State</label><div class="input-wrap"><input type="text" id="state" placeholder="California" autocomplete="off"><button class="toggle-btn active" data-field="state" title="Toggle"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
+          </div>
+          <div class="field-row">
+            <div class="field-group"><label for="zip">ZIP Code</label><div class="input-wrap"><input type="text" id="zip" placeholder="94102" autocomplete="off"><button class="toggle-btn active" data-field="zip" title="Toggle"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
+            <div class="field-group"><label for="country">Country</label><div class="input-wrap"><input type="text" id="country" placeholder="United States" autocomplete="off"><button class="toggle-btn active" data-field="country" title="Toggle"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Professional -->
+      <section class="form-section" data-section="professional">
+        <button class="section-header" type="button" aria-expanded="true">
+          <div class="section-header-left">
+            <svg class="section-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="6" width="14" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 6V4a3 3 0 0 1 6 0v2" stroke="currentColor" stroke-width="1.5"/></svg>
+            <span>Professional</span>
+          </div>
+          <svg class="chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="section-content">
+          <div class="field-row">
+            <div class="field-group"><label for="jobTitle">Job Title</label><div class="input-wrap"><input type="text" id="jobTitle" placeholder="Software Engineer" autocomplete="off"><button class="toggle-btn active" data-field="jobTitle" title="Toggle"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
+            <div class="field-group"><label for="company">Company</label><div class="input-wrap"><input type="text" id="company" placeholder="Acme Corp" autocomplete="off"><button class="toggle-btn active" data-field="company" title="Toggle"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
+          </div>
+          <div class="field-row"><div class="field-group full-width"><label for="linkedin">LinkedIn URL</label><div class="input-wrap"><input type="url" id="linkedin" placeholder="https://linkedin.com/in/johndoe" autocomplete="off"><button class="toggle-btn active" data-field="linkedin" title="Toggle"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div></div>
+        </div>
+      </section>
+
+      <!-- Education -->
+      <section class="form-section" data-section="education">
+        <button class="section-header" type="button" aria-expanded="true">
+          <div class="section-header-left">
+            <svg class="section-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L2 7l8 5 8-5-8-5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M4 9v5c0 2 3 3 6 3s6-1 6-3V9" stroke="currentColor" stroke-width="1.5"/></svg>
+            <span>Education</span>
+          </div>
+          <svg class="chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="section-content">
+          <div class="field-row">
+            <div class="field-group"><label for="university">University</label><div class="input-wrap"><input type="text" id="university" placeholder="MIT" autocomplete="off"><button class="toggle-btn active" data-field="university" title="Toggle"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
+            <div class="field-group"><label for="degree">Degree</label><div class="input-wrap"><input type="text" id="degree" placeholder="B.S. Computer Science" autocomplete="off"><button class="toggle-btn active" data-field="degree" title="Toggle"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
+          </div>
+          <div class="field-row">
+            <div class="field-group"><label for="gradYear">Graduation Year</label><div class="input-wrap"><input type="text" id="gradYear" placeholder="2024" autocomplete="off"><button class="toggle-btn active" data-field="gradYear" title="Toggle"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
+            <div class="field-group"><label for="gpa">GPA</label><div class="input-wrap"><input type="text" id="gpa" placeholder="3.8" autocomplete="off"><button class="toggle-btn active" data-field="gpa" title="Toggle"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Files -->
+      <section class="form-section" data-section="files">
+        <button class="section-header" type="button" aria-expanded="true">
+          <div class="section-header-left">
+            <svg class="section-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 3h7l5 5v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" stroke="currentColor" stroke-width="1.5"/><path d="M11 3v5h5" stroke="currentColor" stroke-width="1.5"/></svg>
+            <span>Files & Documents</span>
+          </div>
+          <svg class="chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="section-content">
+          <div class="file-upload-area">
+            <div class="file-dropzone" id="resumeDropzone" data-file-type="resume">
+              <div class="dropzone-content">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M16 4v18M10 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 22v4a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2v-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                <p class="dropzone-label">Resume / CV</p>
+                <p class="dropzone-hint">Drop PDF here or click to browse</p>
+                <p class="dropzone-file" id="resumeFileName"></p>
+              </div>
+              <input type="file" id="resumeFile" accept=".pdf,.doc,.docx" class="file-input-native">
+              <button class="file-remove-btn" id="resumeRemoveBtn" title="Remove file" hidden>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M4 4l6 6M10 4l-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+            </div>
+            <div class="file-dropzone" id="photoDropzone" data-file-type="photo">
+              <div class="dropzone-content">
+                <div class="photo-preview" id="photoPreview" hidden><img id="photoPreviewImg" alt="Preview"></div>
+                <svg class="photo-upload-icon" width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="4" y="6" width="24" height="20" rx="3" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="14" r="3" stroke="currentColor" stroke-width="2"/><path d="M4 22l6-6 4 4 4-4 10 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <p class="dropzone-label">Profile Photo</p>
+                <p class="dropzone-hint">Drop image here or click</p>
+                <p class="dropzone-file" id="photoFileName"></p>
+              </div>
+              <input type="file" id="photoFile" accept="image/*" class="file-input-native">
+              <button class="file-remove-btn" id="photoRemoveBtn" title="Remove file" hidden>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M4 4l6 6M10 4l-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-left">
+        <button id="exportBtn" class="btn btn--ghost" title="Export profile">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v8M5 7l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 11v2a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          Export
+        </button>
+        <button id="importBtn" class="btn btn--ghost" title="Import profile">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 10V2M5 5l3-3 3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 11v2a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          Import
+        </button>
+        <input type="file" id="importFile" accept=".json" hidden>
+      </div>
+      <button id="saveBtn" class="btn btn--primary">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Save Profile
+      </button>
+    </footer>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <div class="modal-overlay" id="newProfileModal" hidden>
+      <div class="modal">
+        <h3>Create New Profile</h3>
+        <input type="text" id="newProfileName" placeholder="Profile name (e.g., Job Apps)" maxlength="30">
+        <div class="modal-actions">
+          <button class="btn btn--ghost" id="cancelProfileBtn">Cancel</button>
+          <button class="btn btn--primary" id="confirmProfileBtn">Create</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="../utils/crypto.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

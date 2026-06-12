@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AutoFill Pro — Test Form</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0f0f14;
+      color: #e8e8f0;
+      min-height: 100vh;
+      padding: 40px;
+    }
+    .container { max-width: 720px; margin: 0 auto; }
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtitle { color: #9494a8; margin-bottom: 32px; font-size: 14px; }
+    .form-card {
+      background: linear-gradient(145deg, rgba(28,28,39,0.9), rgba(22,22,29,0.95));
+      border: 1px solid #2a2a3d;
+      border-radius: 14px;
+      padding: 28px;
+      margin-bottom: 20px;
+    }
+    .form-card h2 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: #818cf8;
+    }
+    .row { display: flex; gap: 16px; margin-bottom: 16px; }
+    .field { flex: 1; }
+    .field.full { flex: 1 0 100%; }
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      color: #9494a8;
+      margin-bottom: 6px;
+    }
+    input, select, textarea {
+      width: 100%;
+      background: #22222f;
+      border: 1px solid #2a2a3d;
+      border-radius: 8px;
+      padding: 10px 12px;
+      color: #e8e8f0;
+      font-family: inherit;
+      font-size: 13px;
+      transition: border-color 0.2s;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+    }
+    textarea { resize: vertical; min-height: 80px; }
+    .submit-btn {
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 28px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: all 0.2s;
+    }
+    .submit-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(99,102,241,0.4); }
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background: rgba(99,102,241,0.15);
+      border: 1px solid rgba(99,102,241,0.3);
+      border-radius: 20px;
+      font-size: 11px;
+      color: #818cf8;
+      margin-left: 8px;
+    }
+    .section-break { border: none; border-top: 1px solid #2a2a3d; margin: 24px 0; }
+
+    /* Dynamic form test */
+    #dynamicSection { display: none; }
+    .show-dynamic-btn {
+      background: #22222f;
+      border: 1px solid #2a2a3d;
+      color: #9494a8;
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-family: inherit;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-bottom: 20px;
+    }
+    .show-dynamic-btn:hover { border-color: #6366f1; color: #e8e8f0; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Job Application Form</h1>
+    <p class="subtitle">Test page for AutoFill Pro extension <span class="badge">Test Form</span></p>
+
+    <!-- Basic Info Form -->
+    <div class="form-card">
+      <h2>👤 Personal Information</h2>
+      <form id="personalForm">
+        <div class="row">
+          <div class="field">
+            <label for="first_name">First Name</label>
+            <input type="text" id="first_name" name="first_name" placeholder="Enter first name">
+          </div>
+          <div class="field">
+            <label for="last_name">Last Name</label>
+            <input type="text" id="last_name" name="last_name" placeholder="Enter last name">
+          </div>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="email_address">Email Address</label>
+            <input type="email" id="email_address" name="email" placeholder="your@email.com">
+          </div>
+          <div class="field">
+            <label for="phone_number">Phone Number</label>
+            <input type="tel" id="phone_number" name="phone" placeholder="+1 (555) 000-0000">
+          </div>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="date_of_birth">Date of Birth</label>
+            <input type="date" id="date_of_birth" name="dob">
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Address Form -->
+    <div class="form-card">
+      <h2>📍 Address</h2>
+      <form id="addressForm">
+        <div class="row">
+          <div class="field full">
+            <label for="street_address">Street Address</label>
+            <input type="text" id="street_address" name="address" placeholder="123 Main St">
+          </div>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" placeholder="City">
+          </div>
+          <div class="field">
+            <label for="state">State</label>
+            <select id="state" name="state">
+              <option value="">Select state...</option>
+              <option value="CA">California</option>
+              <option value="NY">New York</option>
+              <option value="TX">Texas</option>
+              <option value="FL">Florida</option>
+              <option value="IL">Illinois</option>
+              <option value="WA">Washington</option>
+              <option value="MA">Massachusetts</option>
+              <option value="CO">Colorado</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="zip_code">ZIP Code</label>
+            <input type="text" id="zip_code" name="zip" placeholder="94102">
+          </div>
+          <div class="field">
+            <label for="country">Country</label>
+            <input type="text" id="country" name="country" placeholder="Country">
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Professional Form -->
+    <div class="form-card">
+      <h2>💼 Professional Details</h2>
+      <form id="professionalForm">
+        <div class="row">
+          <div class="field">
+            <label for="job_title">Current Job Title</label>
+            <input type="text" id="job_title" name="job_title" placeholder="Software Engineer">
+          </div>
+          <div class="field">
+            <label for="company_name">Company</label>
+            <input type="text" id="company_name" name="company" placeholder="Current employer">
+          </div>
+        </div>
+        <div class="row">
+          <div class="field full">
+            <label for="linkedin_url">LinkedIn Profile</label>
+            <input type="url" id="linkedin_url" name="linkedin" placeholder="https://linkedin.com/in/...">
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Education Form -->
+    <div class="form-card">
+      <h2>🎓 Education</h2>
+      <form id="educationForm">
+        <div class="row">
+          <div class="field">
+            <label for="university_name">University / College</label>
+            <input type="text" id="university_name" name="university" placeholder="University name">
+          </div>
+          <div class="field">
+            <label for="degree_name">Degree</label>
+            <input type="text" id="degree_name" name="degree" placeholder="B.S. Computer Science">
+          </div>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="graduation_year">Graduation Year</label>
+            <input type="text" id="graduation_year" name="grad_year" placeholder="2024">
+          </div>
+          <div class="field">
+            <label for="gpa_score">GPA</label>
+            <input type="text" id="gpa_score" name="gpa" placeholder="3.8">
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- File Uploads -->
+    <div class="form-card">
+      <h2>📎 Documents</h2>
+      <form id="fileForm">
+        <div class="row">
+          <div class="field">
+            <label for="resume_upload">Upload Resume (PDF)</label>
+            <input type="file" id="resume_upload" name="resume" accept=".pdf,.doc,.docx">
+          </div>
+          <div class="field">
+            <label for="photo_upload">Profile Photo</label>
+            <input type="file" id="photo_upload" name="photo" accept="image/*">
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Dynamic Form Test -->
+    <button class="show-dynamic-btn" onclick="document.getElementById('dynamicSection').style.display='block'; this.style.display='none';">
+      ⚡ Show Additional Fields (Tests MutationObserver)
+    </button>
+
+    <div id="dynamicSection">
+      <div class="form-card">
+        <h2>🔄 Dynamically Loaded Fields</h2>
+        <p style="color: #9494a8; font-size: 12px; margin-bottom: 16px;">These fields appeared after page load — tests the MutationObserver</p>
+        <div class="row">
+          <div class="field">
+            <label for="alt_email">Alternative Email</label>
+            <input type="email" id="alt_email" name="alt_email" placeholder="backup@email.com">
+          </div>
+          <div class="field">
+            <label for="alt_phone">Alternative Phone</label>
+            <input type="tel" id="alt_phone" name="alt_phone" placeholder="+1 (555) 111-2222">
+          </div>
+        </div>
+        <div class="row">
+          <div class="field full">
+            <label>Full Name</label>
+            <input type="text" name="full_name" placeholder="Full name">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="section-break">
+    <button class="submit-btn" onclick="alert('Form submitted! (This is a test page)')">Submit Application</button>
+  </div>
+</body>
+</html>

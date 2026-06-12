@@ -1,0 +1,105 @@
+/* ================================================
+   AutoFill Pro — Content Script Styles
+   Injected into web pages — all selectors prefixed
+   to avoid CSS conflicts with host pages
+   ================================================ */
+
+/* ---- Fill Indicator Glow ---- */
+@keyframes autofill-pro-glow {
+  0% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.6); }
+  50% { box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.3); }
+  100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+}
+
+.autofill-pro-filled {
+  animation: autofill-pro-glow 1.2s ease-out !important;
+}
+
+/* ---- Floating File Helper Button ---- */
+.autofill-pro-file-helper {
+  position: absolute;
+  z-index: 2147483647;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #fff;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+  pointer-events: auto;
+  animation: autofill-pro-fadeIn 0.3s ease;
+}
+
+.autofill-pro-file-helper:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(99, 102, 241, 0.5);
+}
+
+.autofill-pro-file-helper:active {
+  transform: translateY(0);
+}
+
+.autofill-pro-file-helper svg {
+  flex-shrink: 0;
+}
+
+@keyframes autofill-pro-fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- Notification Banner ---- */
+.autofill-pro-notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 2147483647;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  background: linear-gradient(135deg, #1c1c27, #22222f);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 12px;
+  color: #e8e8f0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  animation: autofill-pro-slideIn 0.4s ease, autofill-pro-slideOut 0.3s ease 3.7s forwards;
+  backdrop-filter: blur(12px);
+}
+
+.autofill-pro-notification-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1, #a855f7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.autofill-pro-notification-count {
+  color: #818cf8;
+  font-weight: 700;
+}
+
+@keyframes autofill-pro-slideIn {
+  from { opacity: 0; transform: translateX(100px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes autofill-pro-slideOut {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(100px); }
+}
